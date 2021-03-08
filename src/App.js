@@ -1,8 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import Icon from 'react-native-vector-icons/AntDesign';
+
+import Navigation from './routes';
+
+Icon.loadFont();
 
 const App = () => {
-  return <View />;
+  return (
+    <>
+      <Navigation />
+    </>
+  );
 }
 
 export default App;
