@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -9,6 +10,8 @@ Icon.loadFont();
 const App = () => {
   return (
     <>
+      <StatusBar barStyle="light-content" backgroundColor="#6548A3" />
+
       <Navigation />
     </>
   );

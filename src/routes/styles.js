@@ -15,3 +15,9 @@ export const IconWrapper = styled.View`
 
   padding-top: 10px;
 `;
+
+export const NavigationBarButton = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;

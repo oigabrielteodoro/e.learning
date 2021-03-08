@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,7 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from '../pages/Home';
 import MyCourses from '../pages/MyCourses';
 
-import { IconWrapper } from './styles';
+import { IconWrapper, NavigationBarButton } from './styles';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ const Routes = () => {
                 <Icon name={name} size={size} color={color} />
               </IconWrapper>
             )
-          }
+          },
         })}
         tabBarOptions={{
           style: {
@@ -45,14 +46,14 @@ const Routes = () => {
           name="Home"
           component={Home}
           options={{
-            title: 'Home',
+            title: '',
           }}
         />
         <Tab.Screen
           name="MyCourses"
           component={MyCourses}
           options={{
-            title: 'Salvos',
+            title: '',
           }}
         />
       </Tab.Navigator>
