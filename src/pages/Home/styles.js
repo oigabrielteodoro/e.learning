@@ -17,3 +17,7 @@ export const Content = styled.View`
   display: flex;
   flex: 1;
 `;
+
+export const Title = styled.Text`
+  font-family: 'Rubik-Regular';
+`;

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text, Image } from 'react-native';
 
 import Header from '../../components/Header';
 
-import { Wrapper, Content } from './styles';
+import { Wrapper, Content, Title } from './styles';
 
 const Home = () => {
   return (
     <Wrapper>
       <Header />
       <Content>
-        <Text>Content</Text>
+        <Title>Content</Title>
       </Content>
     </Wrapper>
   );
