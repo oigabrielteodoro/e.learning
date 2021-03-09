@@ -1,12 +1,20 @@
 import React from 'react';
 
-import { Platform, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Platform, KeyboardAvoidingView, ScrollView, Image, Dimensions } from 'react-native';
 
 import Header from '../../components/Header';
 
-import { Wrapper, Content, CategoriesWrapper, Title, MyCoursesText } from './styles';
+import { courses } from '../../constants/courses';
+
+import mathPng from '../../../assets/Math.png';
+
+import { Wrapper, Content, CategoriesWrapper, Title, CoursesText, CoursesList, CourseItem, CourseItemTitle, CourseItemDetails, CourseItemLessonsText } from './styles';
 
 const Home = () => {
+  const screenWidth = Dimensions.get('window').width;
+
+  const tileSize = screenWidth / 2;
+
   return (
     <KeyboardAvoidingView 
       style={{ flex: 1 }} 
@@ -24,8 +32,24 @@ const Home = () => {
             <CategoriesWrapper>
               <Title>Categorias</Title>
 
-              <MyCoursesText>43 cursos</MyCoursesText>
+              <CoursesText>43 cursos</CoursesText>
             </CategoriesWrapper>
+
+            <CoursesList 
+              data={courses} 
+              numColumns={2}
+              keyExtractor={course => course.name} 
+              renderItem={({ item: course }) => (
+                <CourseItem width={tileSize}>
+                  <Image source={course.iconPath} />
+              
+                  <CourseItemDetails>
+                    <CourseItemTitle>{course.name}</CourseItemTitle>
+                    <CourseItemLessonsText>{course.lessons} aulas</CourseItemLessonsText>
+                  </CourseItemDetails>
+                </CourseItem>
+              )} 
+            />
           </Content>
         </Wrapper>
       </ScrollView>
