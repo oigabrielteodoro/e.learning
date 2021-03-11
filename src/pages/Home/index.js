@@ -4,6 +4,7 @@ import { Platform, KeyboardAvoidingView, ScrollView, Image } from 'react-native'
 
 import Header from '../../components/Header';
 
+import { useToast } from '../../hooks/toast';
 import { useCourses } from '../../hooks/courses';
 
 import { courses } from '../../constants/courses';
@@ -20,7 +21,6 @@ import {
   CourseItemDetails, 
   CourseItemLessonsText 
 } from './styles';
-import { useToast } from '../../hooks/toast';
 
 const Home = () => {
   const { addToast } = useToast();
