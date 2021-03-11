@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Platform, KeyboardAvoidingView, ScrollView, Image, Text } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 
-import Modal from '../../components/Modal';
 import Header from '../../components/Header';
 
 import { useCourses } from '../../hooks/courses';
+
+import DeleteCourseModal from './DeleteCourseModal';
 
 import { 
   Wrapper, 
@@ -23,13 +24,9 @@ import {
 } from './styles';
 
 const MyCourses = () => {
-  const { courses, updateCourses } = useCourses();
+  const { courses } = useCourses();
 
   const [selectedCourse, setSelectedCourse] = useState();
-
-  const handleDelete = useCallback((course) => {
-    updateCourses(course);
-  }, [updateCourses]);
 
   return (
     <KeyboardAvoidingView 
@@ -75,9 +72,7 @@ const MyCourses = () => {
       </ScrollView>
 
       {selectedCourse && (
-        <Modal onCancel={() => setSelectedCourse(undefined)}>
-          <Text>Teste</Text>
-        </Modal>
+        <DeleteCourseModal course={selectedCourse} onCancel={() => setSelectedCourse(undefined)} />
       )}
     </KeyboardAvoidingView>
   );

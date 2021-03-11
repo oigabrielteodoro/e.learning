@@ -8,14 +8,14 @@ export const Overlay = styled.View`
 
 export const Container = styled.View`
   background: #fff;
-  border-radius: 10px;
+  border-radius: 16px;
 
-  padding: 25px;
+  padding: 32px;
 
   margin: auto;
 
   position: relative;
 
   width: 100%;
-  max-width: 360px;
+  max-width: 277px;
 `;
