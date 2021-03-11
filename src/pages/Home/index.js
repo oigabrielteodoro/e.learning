@@ -16,6 +16,7 @@ const Home = () => {
       enabled
     >
       <ScrollView 
+        horizontal
         keyboardShouldPersistTaps="handled" 
         contentContainerStyle={{ flex: 1 }} 
         showsVerticalScrollIndicator={false}
@@ -32,7 +33,7 @@ const Home = () => {
             <CoursesList 
               data={courses} 
               numColumns={2}
-              keyExtractor={course => course.name} 
+              keyExtractor={course => course.id} 
               renderItem={({ item: course }) => (
                 <CourseItem>
                   <Image source={course.iconPath} />

@@ -35,6 +35,7 @@ const MyCourses = () => {
       enabled
     >
       <ScrollView 
+        horizontal
         keyboardShouldPersistTaps="handled" 
         contentContainerStyle={{ flex: 1 }} 
         showsVerticalScrollIndicator={false}
@@ -49,6 +50,7 @@ const MyCourses = () => {
             <CoursesList 
               data={myCourses} 
               numColumns={2}
+              vertical
               keyExtractor={course => course.name} 
               renderItem={({ item: course }) => (
                 <CourseItem>
