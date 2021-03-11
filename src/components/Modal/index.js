@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 
 import { Modal } from 'react-native';
 
@@ -15,18 +15,24 @@ const ModalComponent = ({ children, onCancel }) => {
     onCancel();
   }
 
+  const handleOverlayClick = useCallback((event) => {
+    if (event.target === ref.current) {
+      handleCancel();
+    }
+  }, [handleCancel]);
+
   return (
-    <Overlay ref={ref} onTouchEnd={() => handleCancel()}>
-      <Modal 
-        transparent
-        visible={isVisible}
-        animationType="slide"
-      >
+    <Modal 
+      transparent
+      visible={isVisible}
+      animationType="fade"
+    >
+      <Overlay ref={ref} onTouchEnd={handleOverlayClick}>
         <Container>
           {children}
         </Container>
-      </Modal>
-    </Overlay>
+      </Overlay>
+    </Modal>
   );
 }
 

@@ -1,9 +1,11 @@
 import styled from 'styled-components/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 
-export const Wrapper = styled.SafeAreaView`
+export const Wrapper = styled.View`
   background: #6548A3;
+  padding-top: ${() => `${getStatusBarHeight()}px`};
 
   display: flex;
   flex: 1;
