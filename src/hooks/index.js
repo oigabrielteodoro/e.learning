@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { AuthProvider } from './auth';
 import { ToastProvider } from './toast';
 import { CoursesProvider } from './courses';
 
@@ -7,7 +8,9 @@ const AppProvider = ({ children }) => {
   return (
     <CoursesProvider>
       <ToastProvider>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </ToastProvider>
     </CoursesProvider>
   );

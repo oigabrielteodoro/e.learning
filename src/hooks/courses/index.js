@@ -1,8 +1,6 @@
 import React, { createContext, useState, useCallback, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 
-// import { Container } from './styles';
-
 const CoursesContext = createContext({});
 
 const CoursesProvider = ({ children }) => {
