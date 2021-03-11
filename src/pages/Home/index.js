@@ -4,11 +4,26 @@ import { Platform, KeyboardAvoidingView, ScrollView, Image } from 'react-native'
 
 import Header from '../../components/Header';
 
+import { useCourses } from '../../hooks/courses';
+
 import { courses } from '../../constants/courses';
 
-import { Wrapper, Content, CategoriesWrapper, Title, CoursesText, CoursesList, CourseItem, CourseItemTitle, CourseItemDetails, CourseItemLessonsText } from './styles';
+import { 
+  Wrapper, 
+  Content, 
+  CategoriesWrapper, 
+  Title, 
+  CoursesText, 
+  CoursesList, 
+  CourseItem, 
+  CourseItemTitle, 
+  CourseItemDetails, 
+  CourseItemLessonsText 
+} from './styles';
 
 const Home = () => {
+  const { updateCourses } = useCourses();
+
   return (
     <KeyboardAvoidingView 
       style={{ flex: 1 }} 
@@ -35,7 +50,7 @@ const Home = () => {
               numColumns={2}
               keyExtractor={course => course.id} 
               renderItem={({ item: course }) => (
-                <CourseItem>
+                <CourseItem onPress={() => updateCourses(course)}>
                   <Image source={course.iconPath} />
               
                   <CourseItemDetails>

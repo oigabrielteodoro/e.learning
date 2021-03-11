@@ -13,7 +13,9 @@ const CoursesProvider = ({ children }) => {
       const storagedCourses = await AsyncStorage.getItem('@E-learning:courses');
 
       if (storagedCourses) {
-        setData(storagedCourses);
+        const parsedCourses = JSON.parse(storagedCourses);
+        
+        setData(parsedCourses);
       }
     }
 
@@ -24,17 +26,17 @@ const CoursesProvider = ({ children }) => {
     const foundedCourse = data.find(course => course.id === courseToAdd.id);
 
     if (foundedCourse) {
-      const courses = data.filter(course => course.id === courseToAdd.id);
+      const courses = data.filter(course => course.id !== courseToAdd.id);
 
       setData(courses);
 
-      await AsyncStorage.setItem('@E-learning:courses', courses);
+      await AsyncStorage.setItem('@E-learning:courses', JSON.stringify(courses));
     } else {
       const courses = [...data, courseToAdd];
 
       setData(courses);
 
-      await AsyncStorage.setItem('@E-learning:courses', courses);
+      await AsyncStorage.setItem('@E-learning:courses', JSON.stringify(courses));
     }
   }, [data]);
 

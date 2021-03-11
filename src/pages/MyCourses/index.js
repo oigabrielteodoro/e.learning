@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import Header from '../../components/Header';
 
-import { courses } from '../../constants/courses';
+import { useCourses } from '../../hooks/courses';
 
 import { 
   Wrapper, 
@@ -22,11 +22,11 @@ import {
 } from './styles';
 
 const MyCourses = () => {
-  const [myCourses, setMyCourses] = useState([courses[0], courses[1], courses[2], courses[4]]);
+  const { courses, updateCourses } = useCourses();
 
-  const handleDelete = useCallback((name) => {
-    setMyCourses(prevState => prevState.filter(course => course.name !== name));
-  }, []);
+  const handleDelete = useCallback((course) => {
+    updateCourses(course);
+  }, [updateCourses]);
 
   return (
     <KeyboardAvoidingView 
@@ -48,10 +48,10 @@ const MyCourses = () => {
             </CategoriesWrapper>
 
             <CoursesList 
-              data={myCourses} 
+              data={courses} 
               numColumns={2}
               vertical
-              keyExtractor={course => course.name} 
+              keyExtractor={course => course.id} 
               renderItem={({ item: course }) => (
                 <CourseItem>
                   <Image source={course.iconPath} />
