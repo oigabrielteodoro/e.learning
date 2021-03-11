@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { Platform, KeyboardAvoidingView, ScrollView, Image } from 'react-native';
 
@@ -20,9 +20,30 @@ import {
   CourseItemDetails, 
   CourseItemLessonsText 
 } from './styles';
+import { useToast } from '../../hooks/toast';
 
 const Home = () => {
+  const { addToast } = useToast();
   const { updateCourses } = useCourses();
+
+  const [sendedToast, setSendedToast] = useState(false);
+
+  const handleAddCourse = useCallback((course) => {
+    updateCourses(course);
+
+    if (!sendedToast) {
+      addToast({
+        title: 'Adicionado com sucesso',
+        type: 'info',
+      });
+  
+      setSendedToast(true);
+  
+      setTimeout(() => {
+        setSendedToast(false);
+      }, 3000);
+    }
+  }, [updateCourses, sendedToast]);
 
   return (
     <KeyboardAvoidingView 
@@ -42,7 +63,7 @@ const Home = () => {
             <CategoriesWrapper>
               <Title>Categorias</Title>
 
-              <CoursesText>43 cursos</CoursesText>
+              <CoursesText>{courses.length} cursos</CoursesText>
             </CategoriesWrapper>
 
             <CoursesList 
@@ -50,7 +71,7 @@ const Home = () => {
               numColumns={2}
               keyExtractor={course => course.id} 
               renderItem={({ item: course }) => (
-                <CourseItem onPress={() => updateCourses(course)}>
+                <CourseItem onPress={() => handleAddCourse(course)}>
                   <Image source={course.iconPath} />
               
                   <CourseItemDetails>

@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { ToastProvider } from './toast';
 import { CoursesProvider } from './courses';
 
 const AppProvider = ({ children }) => {
   return (
     <CoursesProvider>
-      {children}
+      <ToastProvider>
+        {children}
+      </ToastProvider>
     </CoursesProvider>
   );
 }
